@@ -23,23 +23,26 @@ def scrapping(url):
         price(f"erroria {e}")
 
     return books #დააბრუნებს წიგნების სიას
+def main():
+    csv_file = "books.csv"
+    with open(csv_file, "w", newline="", encoding="utf-8") as file:
+        writer = csv.writer(file)
 
-csv_file = "books.csv"
+        b_url = "http://books.toscrape.com/catalogue/page-{}.html"
 
-with open(csv_file,"w",newline="",encoding="utf-8") as file:
-    write = csv.writer(file)
+        for page in range(1,6):
+            url = b_url.format(page)
+            books = scrapping(url)
+            # თითოეული წიგნის სათაურისა და ფასის ჩაწერა CSV ფაილში
 
-    b_url = "http://books.toscrape.com/catalogue/page-{}.html"
-
-    for page in range(1,6):
-        url = b_url.format(page)
-        books = scrapping(url)
-        # თითოეული წიგნის სათაურისა და ფასის ჩაწერა CSV ფაილში
-
-        for book in books:
-            write.writerow([f"Name: {book[0]}", f"  Price: {book[1]}"])
-            write.writerow(" ") 
-        print(f"saiti's page {page} daiscrapa ")
-        time.sleep(15 + (5 * page))
+            for book in books:
+                writer.writerow([f"Name: {book[0]}", f"  Price: {book[1]}"])
+                writer.writerow("") 
+            print(f"saiti's page {page} daiscrapa ")
+            time.sleep(15 + (5 * page))
         
-print(f"websites scrapping dasrulda da informacia motavsda {csv_file} - shi")
+    print(f"websites scrapping dasrulda da informacia motavsda {csv_file} - shi")
+
+
+if __name__ == "__main__":
+    main()
