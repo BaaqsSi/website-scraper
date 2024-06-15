@@ -30,11 +30,12 @@ def main():
 
         b_url = "http://books.toscrape.com/catalogue/page-{}.html"
 
-        for page in range(1,6):
-            url = b_url.format(page)
-            books = scrapping(url)
-            # თითოეული წიგნის სათაურისა და ფასის ჩაწერა CSV ფაილში
 
+        for page in range(1,6):
+            url = b_url.format(page) # ამოწმებს url-ს ამ გვერდის ნომრით
+            books = scrapping(url)
+            
+            # თითოეული წიგნის სათაურისა და ფასის ჩაწერა CSV ფაილში
             for book in books:
                 writer.writerow([f"Name: {book[0]}", f"  Price: {book[1]}"])
                 writer.writerow("") 
