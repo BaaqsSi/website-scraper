@@ -40,6 +40,6 @@ with open(csv_file,"w",newline="",encoding="utf-8") as file:
             write.writerow([f"Name: {book[0]}", f"  Price: {book[1]}"])
             write.writerow(" ") 
         print(f"saiti's page {page} daiscrapa ")
-        time.sleep(2 + (5 * page))
+        time.sleep(15 + (5 * page))
         
 print(f"websites scrapping dasrulda da informacia motavsda {csv_file} - shi")
